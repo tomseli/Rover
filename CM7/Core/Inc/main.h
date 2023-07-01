@@ -31,7 +31,7 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "uart.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -57,6 +57,10 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define LED_Red_Pin GPIO_PIN_14
+#define LED_Red_GPIO_Port GPIOB
+#define LED_Yellow_Pin GPIO_PIN_1
+#define LED_Yellow_GPIO_Port GPIOE
 
 /* USER CODE BEGIN Private defines */
 
