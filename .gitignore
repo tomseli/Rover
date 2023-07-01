@@ -50,3 +50,10 @@ release
 *.su
 *.idb
 *.pdb
+
+# Eclipse
+.metadata
+.settings
+[Rr]elease
+[Dd]ebug
+.launch
