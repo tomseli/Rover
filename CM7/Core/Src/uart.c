@@ -4,10 +4,6 @@
  *  Created on: Jul 1, 2023
  *      Author: Tom
  */
-
-#include "main.h"
-#include "stdio.h"
-#include "string.h"
 #include "uart.h"
 
 extern UART_HandleTypeDef huart3;
