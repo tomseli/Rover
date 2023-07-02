@@ -143,18 +143,16 @@ Error_Handler();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  HAL_GPIO_TogglePin(LED_Green_GPIO_Port, LED_Green_Pin);
 	  SetPwm(TIM4, 2, 1.5);
 	  HAL_Delay(500);
-	  HAL_GPIO_TogglePin(LED_Green_GPIO_Port, LED_Green_Pin);
 	  SetPwm(TIM4, 2, 2.0);
 	  HAL_Delay(500);
-	  HAL_GPIO_TogglePin(LED_Green_GPIO_Port, LED_Green_Pin);
 	  SetPwm(TIM4, 1, 1.5);
 	  HAL_Delay(500);
-	  HAL_GPIO_TogglePin(LED_Green_GPIO_Port, LED_Green_Pin);
 	  SetPwm(TIM4, 1, 1.0);
 	  HAL_Delay(500);
+
+	  HAL_GPIO_TogglePin(LED_Green_GPIO_Port, LED_Green_Pin);
 
   }
   /* USER CODE END 3 */
