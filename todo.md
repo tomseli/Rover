@@ -11,13 +11,14 @@
 - [ ] Heading
 - [ ] Distance
 
+# Advanced control
 - [ ] Heading PID output to MAVLink
-- [ ] PID (class)
+- [ ] PID 
 - [ ] Limit rate of change
-- [ ] LPF filters (class)
+- [ ] LPF filters 
 - [ ] Speed PID output to MAVLink
-- [ ] PID (class)
+- [ ] PID 
 - [ ] Limit rate of change
-- [ ] LPF filters (class)
+- [ ] LPF filters
 - [ ] Hand heading over to uC
 - [ ] Hand speed over to uC
