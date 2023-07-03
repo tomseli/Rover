@@ -32,7 +32,7 @@ void UartInt(unsigned int value)
  * @brief print any string to UART
  * @param char* to string
  */
-void UartString(char* s)
+void UartString(unsigned char* s)
 {
 	int i = 0;
 

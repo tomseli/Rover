@@ -13,6 +13,6 @@
 
 void UartChar(unsigned char);
 void UartInt(unsigned int);
-void UartString(char*);
+void UartString(unsigned char*);
 
 #endif /* SRC_UART_H_ */
