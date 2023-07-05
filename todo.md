@@ -1,6 +1,7 @@
 # Basics
 - [x] Move motors and servos
 - [ ] RC via remote
+ - [ ] Update UART to DMA
 - [ ] MAVLink connection Laptop <-> STM
 - [ ] RC via MAVLink
 - [ ] GPS to laptop
