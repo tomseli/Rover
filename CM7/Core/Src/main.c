@@ -51,10 +51,6 @@ DMA_HandleTypeDef hdma_usart2_rx;
 
 /* USER CODE BEGIN PV */
 uint8_t rx_buf[CRSF_MAX_PAYLOAD];
-uint8_t it_buf[CRSF_MAX_PAYLOAD];
-uint16_t new_pos = 0;
-uint16_t old_pos = 0;
-
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -152,7 +148,6 @@ Error_Handler();
   InitPwm(&htim4);
   SetPwm(TIM4, 1, 1.0);
   SetPwm(TIM4, 2, 2.0);
-  HAL_UART_GetError(huart)
 
   // start CSRF receiver
   __HAL_DMA_DISABLE_IT(&hdma_usart2_rx, DMA_IT_HT);
@@ -174,10 +169,17 @@ Error_Handler();
 	  SetPwm(TIM4, 1, 1.5);
 	  HAL_Delay(50);
 	  SetPwm(TIM4, 1, 1.0);
-	  HAL_Delay(50);
-	  UartString(rx_buf);
-	  UartChar('\n');
+	  HAL_Delay(1000);
 
+//	  CsrfDecode(rx_buf);
+	  // https://community.st.com/t5/stm32-mcus/dma-is-not-working-on-stm32h7-devices/ta-p/49498
+	  // try this tommorow ;)
+	  for(int i = 0; i < CRSF_MAX_PAYLOAD; i++)
+	  {
+		  UartInt(rx_buf[i]);
+		  UartChar(' ');
+	  }
+	  UartChar('\n');
 	  HAL_GPIO_TogglePin(LED_Green_GPIO_Port, LED_Green_Pin);
 
   }

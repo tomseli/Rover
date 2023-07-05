@@ -5,10 +5,12 @@
 # Comms
 - [ ] RC via CRSF
     - [x] USART2 to DMA with idle line detection
+    - [ ] Fix DMA, some issues with specifically MCU of H7?
     - [ ] Decode channel message
     - [ ] Decode other peripherals
     - [ ] Reliable startup
     - [ ] Reattempt connections when there's issues
+    - [ ] CRC check
 - [ ] MAVLink connection Laptop <-> STM
 - [ ] RC via MAVLink
 - [ ] GPS to laptop

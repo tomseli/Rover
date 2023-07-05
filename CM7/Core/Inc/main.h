@@ -33,6 +33,7 @@ extern "C" {
 /* USER CODE BEGIN Includes */
 #include "uart.h"
 #include "pwm.h"
+#include "csrf.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -72,7 +73,6 @@ void Error_Handler(void);
 #define LED_Yellow_GPIO_Port GPIOE
 
 /* USER CODE BEGIN Private defines */
-#define CRSF_MAX_PAYLOAD 68 	// PL+4
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus
