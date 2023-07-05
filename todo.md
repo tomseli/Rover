@@ -4,7 +4,11 @@
 
 # Comms
 - [ ] RC via CRSF
-    - [ ] Update UART2 to DMA?
+    - [x] USART2 to DMA with idle line detection
+    - [ ] Decode channel message
+    - [ ] Decode other peripherals
+    - [ ] Reliable startup
+    - [ ] Reattempt connections when there's issues
 - [ ] MAVLink connection Laptop <-> STM
 - [ ] RC via MAVLink
 - [ ] GPS to laptop
