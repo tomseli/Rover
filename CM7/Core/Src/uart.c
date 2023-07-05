@@ -41,10 +41,10 @@ void UartString(unsigned char* s)
 }
 
 /*
- * TODO: Add print to hex in format
+ * TODO: print string to hex
  * AA BB CC DD
  */
-void UartHex(unsigned char* )
+void UartStringHex(unsigned char* c)
 {
 
 }
