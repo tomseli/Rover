@@ -1,7 +1,7 @@
 # Basics
 - [x] Move motors and servos
-- [ ] RC via remote
- - [ ] Update UART to DMA
+- [ ] RC via CRSF
+  - [ ] Update UART2 to DMA?
 - [ ] MAVLink connection Laptop <-> STM
 - [ ] RC via MAVLink
 - [ ] GPS to laptop
