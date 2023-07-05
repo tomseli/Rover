@@ -4,10 +4,18 @@
 
 # Comms
 - [ ] RC via CRSF
-    - [x] USART2 to DMA with idle line detection
-    - [ ] Fix DMA, some issues with specifically MCU of H7?
-    - [ ] Decode channel message
-    - [ ] Decode other peripherals
+    - [ ] USART2 to DMA with idle line detection
+        - [x] Callback called at correct moments 
+        - [ ] Fix DMA, some issues with specifically MCU of H7?
+    - [ ] Frame decoding
+        - [ ] Link statistics
+        - [ ] RC channels
+        - [ ] Device ping
+        - [ ] Device info
+        - [ ] Parameter settings entry
+        - [ ] Parameter read
+        - [ ] Parameter write
+        - [ ] Command
     - [ ] Reliable startup
     - [ ] Reattempt connections when there's issues
     - [ ] CRC check
