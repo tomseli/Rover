@@ -8,13 +8,7 @@
     - [ ] Via UART
     - [ ] Via MAVLink 
 
-# Control system
-- [ ] Where am i?
-- [ ] Where go?
-- [ ] Heading
-- [ ] Distance
-
-# Advanced control
+# Automatic Control
 - [ ] Heading PID output to MAVLink
 - [ ] PID 
 - [ ] Limit rate of change
