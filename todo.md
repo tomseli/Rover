@@ -1,5 +1,8 @@
 # Basics
-- [x] Move motors and servos
+- [x] Single PWM
+- [x] Quad PWM
+
+# Comms
 - [ ] RC via CRSF
     - [ ] Update UART2 to DMA?
 - [ ] MAVLink connection Laptop <-> STM
