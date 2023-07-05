@@ -49,14 +49,18 @@ UART_HandleTypeDef huart2;
 UART_HandleTypeDef huart3;
 
 /* USER CODE BEGIN PV */
-uint8_t uart_2_rx_data[68];
+uint8_t rx_buf[CRSF_MAX_PAYLOAD];
+uint8_t it_buf[CRSF_MAX_PAYLOAD];
+uint16_t new_pos = 0;
+uint16_t old_pos = 0;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
-static void MX_USART3_UART_Init(void);
 static void MX_TIM4_Init(void);
+static void MX_USART3_UART_Init(void);
 static void MX_USART2_UART_Init(void);
 /* USER CODE BEGIN PFP */
 
@@ -64,7 +68,14 @@ static void MX_USART2_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
+{
+	if(huart == &huart2)
+	{
+		HAL_UARTEx_ReceiveToIdle_IT(&huart2, rx_buf, CRSF_MAX_PAYLOAD);
+		HAL_GPIO_TogglePin(LED_Red_GPIO_Port, LED_Red_Pin);
+	}
+}
 /* USER CODE END 0 */
 
 /**
@@ -130,16 +141,18 @@ Error_Handler();
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_USART3_UART_Init();
   MX_TIM4_Init();
+  MX_USART3_UART_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
+  // PWM for servos and ESCs
   InitPwm(&htim4);
   SetPwm(TIM4, 1, 1.0);
   SetPwm(TIM4, 2, 2.0);
 
-  // start receiving data
-  HAL_UART_Receive_IT(&huart2, uart_2_rx_data, 4);
+  // start CSRF receiver
+  HAL_UARTEx_ReceiveToIdle_IT(&huart2, rx_buf, CRSF_MAX_PAYLOAD);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -150,13 +163,15 @@ Error_Handler();
 
     /* USER CODE BEGIN 3 */
 	  SetPwm(TIM4, 2, 1.5);
-	  HAL_Delay(500);
+	  HAL_Delay(50);
 	  SetPwm(TIM4, 2, 2.0);
-	  HAL_Delay(500);
+	  HAL_Delay(50);
 	  SetPwm(TIM4, 1, 1.5);
-	  HAL_Delay(500);
+	  HAL_Delay(50);
 	  SetPwm(TIM4, 1, 1.0);
-	  HAL_Delay(500);
+	  HAL_Delay(50);
+	  UartString(rx_buf);
+	  UartChar('\n');
 
 	  HAL_GPIO_TogglePin(LED_Green_GPIO_Port, LED_Green_Pin);
 
@@ -419,15 +434,6 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
-{
-	// PD6/PD5 pins
-	if(huart == &huart2)
-	{
-		HAL_UART_Receive_IT(&huart2, uart_2_rx_data, 1);
-		UartString(uart_2_rx_data);
-	}
-}
 /* USER CODE END 4 */
 
 /**

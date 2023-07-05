@@ -39,3 +39,12 @@ void UartString(unsigned char* s)
 	for(; s[i]; i++)
 		UartChar(s[i]);
 }
+
+/*
+ * TODO: Add print to hex in format
+ * AA BB CC DD
+ */
+void UartHex(unsigned char* )
+{
+
+}

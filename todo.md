@@ -1,5 +1,5 @@
 # Basics
-- [ ] Move motors and servos
+- [x] Move motors and servos
 - [ ] RC via remote
 - [ ] MAVLink connection Laptop <-> STM
 - [ ] RC via MAVLink
