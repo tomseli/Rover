@@ -92,9 +92,6 @@ int main(void)
   /* Enable I-Cache---------------------------------------------------------*/
   SCB_EnableICache();
 
-  /* Enable D-Cache---------------------------------------------------------*/
-  SCB_EnableDCache();
-
 /* USER CODE BEGIN Boot_Mode_Sequence_1 */
   /* Wait until CPU2 boots and enters in stop mode or timeout*/
   timeout = 0xFFFF;
@@ -173,7 +170,6 @@ Error_Handler();
 
 //	  CsrfDecode(rx_buf);
 	  // https://community.st.com/t5/stm32-mcus/dma-is-not-working-on-stm32h7-devices/ta-p/49498
-	  // try this tommorow ;)
 	  for(int i = 0; i < CRSF_MAX_PAYLOAD; i++)
 	  {
 		  UartIntHex(rx_buf[i], 2);

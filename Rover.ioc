@@ -2,7 +2,7 @@
 CAD.formats=
 CAD.pinconfig=
 CAD.provider=
-CORTEX_M7.CPU_DCache=Enabled
+CORTEX_M7.CPU_DCache=Disabled
 CORTEX_M7.CPU_ICache=Enabled
 CORTEX_M7.IPParameters=CPU_ICache,CPU_DCache
 CortexM4.IPs=BDMA,CORTEX_M4\:I,DEBUG,DMA,FATFS_M4\:I,FREERTOS_M4\:I,GPIO,IWDG2\:I,MDMA,NVIC2\:I,OPENAMP_M4\:I,PDM2PCM_M4\:I,PWR,RCC,RESMGR_UTILITY,SYS_M4\:I,USB_DEVICE_M4\:I,USB_HOST_M4\:I,VREFBUF,WWDG2\:I
@@ -178,7 +178,7 @@ ProjectManager.StackSize=M4-0x400,M7-0x400
 ProjectManager.TargetToolchain=STM32CubeIDE
 ProjectManager.ToolChainLocation=
 ProjectManager.UnderRoot=true
-ProjectManager.functionlistsort=1-SystemClock_Config-RCC-false-HAL-false-CortexM7,2-MX_GPIO_Init-GPIO-false-HAL-true-CortexM7,5-MX_TIM4_Init-TIM4-false-HAL-true-CortexM7,4-MX_USART3_UART_Init-USART3-false-HAL-true-CortexM7,3-MX_DMA_Init-DMA-false-HAL-true-CortexM7,1-MX_DMA_Init-DMA-false-HAL-true-CortexM4,0-MX_CORTEX_M7_Init-CORTEX_M7-false-HAL-true-CortexM7,0-MX_CORTEX_M4_Init-CORTEX_M4-false-HAL-true-CortexM4
+ProjectManager.functionlistsort=1-SystemClock_Config-RCC-false-HAL-false-CortexM7,2-MX_GPIO_Init-GPIO-false-HAL-true-CortexM7,3-MX_DMA_Init-DMA-false-HAL-true-CortexM7,4-MX_USART3_UART_Init-USART3-false-HAL-true-CortexM7,5-MX_TIM4_Init-TIM4-false-HAL-true-CortexM7,6-MX_USART2_UART_Init-USART2-false-HAL-true-CortexM7,1-MX_DMA_Init-DMA-false-HAL-true-CortexM4,0-MX_CORTEX_M7_Init-CORTEX_M7-false-HAL-true-CortexM7,0-MX_CORTEX_M4_Init-CORTEX_M4-false-HAL-true-CortexM4
 RCC.ADCFreq_Value=16125000
 RCC.AHB12Freq_Value=200000000
 RCC.AHB4Freq_Value=200000000
