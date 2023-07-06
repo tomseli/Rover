@@ -176,10 +176,12 @@ Error_Handler();
 	  // try this tommorow ;)
 	  for(int i = 0; i < CRSF_MAX_PAYLOAD; i++)
 	  {
-		  UartInt(rx_buf[i]);
+		  UartIntHex(rx_buf[i], 2);
 		  UartChar(' ');
 	  }
 	  UartChar('\n');
+
+
 	  HAL_GPIO_TogglePin(LED_Green_GPIO_Port, LED_Green_Pin);
 
   }

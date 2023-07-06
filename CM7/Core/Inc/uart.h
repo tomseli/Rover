@@ -14,5 +14,6 @@
 void UartChar(unsigned char);
 void UartInt(unsigned int);
 void UartString(unsigned char*);
+void UartIntHex(unsigned int, unsigned int);
 
 #endif /* SRC_UART_H_ */
