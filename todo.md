@@ -4,9 +4,10 @@
 
 # Comms
 - [ ] RC via CRSF
-    - [ ] USART2 to DMA with idle line detection
+    - [x] USART2 to DMA with idle line detection
         - [x] Callback called at correct moments 
-        - [ ] Fix DMA, some issues with specifically MCU of H7?
+        - [x] Fix DMA, some issues with specifically MCU of H7?
+        - [ ] Re-enable DCACHE
     - [ ] Frame decoding
         - [ ] Link statistics
         - [ ] RC channels
