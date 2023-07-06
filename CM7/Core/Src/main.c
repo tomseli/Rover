@@ -50,7 +50,8 @@ UART_HandleTypeDef huart3;
 DMA_HandleTypeDef hdma_usart2_rx;
 
 /* USER CODE BEGIN PV */
-uint8_t rx_buf[CRSF_MAX_PAYLOAD];
+uint8_t rx_buf[CRSF_MAX_FRAME];
+PwmRcChannels_t rc_pwm_raw; //TODO: init with 1500
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -166,17 +167,11 @@ Error_Handler();
 	  SetPwm(TIM4, 1, 1.5);
 	  HAL_Delay(50);
 	  SetPwm(TIM4, 1, 1.0);
-	  HAL_Delay(1000);
+	  HAL_Delay(50);
 
-//	  CsrfDecode(rx_buf);
-	  // https://community.st.com/t5/stm32-mcus/dma-is-not-working-on-stm32h7-devices/ta-p/49498
-	  for(int i = 0; i < CRSF_MAX_PAYLOAD; i++)
-	  {
-		  UartIntHex(rx_buf[i], 2);
-		  UartChar(' ');
-	  }
+	  CsrfDecode(rx_buf);
+	  UartInt(rc_pwm_raw.ch00);
 	  UartChar('\n');
-
 
 	  HAL_GPIO_TogglePin(LED_Green_GPIO_Port, LED_Green_Pin);
 
