@@ -13,6 +13,6 @@
 #define APB_1_FREQ 200000000
 
 void InitPwm(TIM_HandleTypeDef*);
-void SetPwm(TIM_TypeDef*, int, float);
+void SetPwm(TIM_TypeDef*, int, int);
 
 #endif /* INC_PWM_H_ */
