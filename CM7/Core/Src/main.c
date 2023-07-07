@@ -160,18 +160,20 @@ Error_Handler();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  SetPwm(TIM4, 2, 1.5);
-	  HAL_Delay(50);
-	  SetPwm(TIM4, 2, 2.0);
-	  HAL_Delay(50);
-	  SetPwm(TIM4, 1, 1.5);
-	  HAL_Delay(50);
-	  SetPwm(TIM4, 1, 1.0);
-	  HAL_Delay(50);
+//	  SetPwm(TIM4, 2, 1.5);
+//	  HAL_Delay(50);
+//	  SetPwm(TIM4, 2, 2.0);
+//	  HAL_Delay(50);
+//	  SetPwm(TIM4, 1, 1.5);
+//	  HAL_Delay(50);
+//	  SetPwm(TIM4, 1, 1.0);
+//	  HAL_Delay(50);
 
 	  CsrfDecode(rx_buf);
 	  UartInt(rc_pwm_raw.ch00);
 	  UartChar('\n');
+	  SetPwm(TIM4, 2, rc_pwm_raw.ch00);
+	  HAL_Delay(100);
 
 	  HAL_GPIO_TogglePin(LED_Green_GPIO_Port, LED_Green_Pin);
 

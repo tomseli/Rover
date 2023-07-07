@@ -7,15 +7,16 @@
 #include "csrf.h"
 
 extern PwmRcChannels_t rc_pwm_raw;
-
 // incoming message has format [dest] [len] [type] [payload] [crc8]
+
 
 void CsrfDecode(uint8_t* ext_buf)
 {
-	// copy over a buf to avoid change of DMA buf
 	uint8_t buf[CRSF_MAX_FRAME];
 	uint8_t payload[CRSF_MAX_PAYLOAD];
 	CsrfRcChannels_t data;
+
+	// copy over a buf to avoid change of DMA buf
 	memcpy(buf, ext_buf, CRSF_MAX_FRAME);
 
 	//TODO: CRC check

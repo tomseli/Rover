@@ -14,7 +14,7 @@ extern UART_HandleTypeDef huart3;
  */
 void UartChar(unsigned char c)
 {
-	 HAL_UART_Transmit(&huart3, &c, 1, 10);
+	 HAL_UART_Transmit(&huart3, &c, 1, INT32_MAX);
 }
 
 /*
@@ -25,7 +25,7 @@ void UartInt(unsigned int value)
 {
 	char text[8];
 
-	HAL_UART_Transmit(&huart3, (uint8_t*) text, sprintf(text, "%d", value), 100);
+	HAL_UART_Transmit(&huart3, (uint8_t*) text, sprintf(text, "%d", value), INT32_MAX);
 }
 
 /*
