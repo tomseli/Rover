@@ -12,6 +12,19 @@ void InitPwm(TIM_HandleTypeDef* tim)
 	HAL_TIM_PWM_Start(tim, TIM_CHANNEL_2);
 }
 
+void InitPwmGlobals(PwmRcChannels_t* data)
+{
+	// get a uint16_t pointer to ch00
+	uint16_t* p = &data->ch00;
+
+	// set value of p to 1500, then increment to next struct member
+	for(int i = 0; i < 16; i++)
+	{
+		*p = 1500;
+		p++;
+	}
+}
+
 void SetPwm(TIM_TypeDef* tim, int channel, int us)
 {
 	uint32_t clock = APB_1_FREQ/(tim->PSC+1); 	// 200 MHz/30 = 6,666,666 Hz

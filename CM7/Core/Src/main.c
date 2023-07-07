@@ -51,7 +51,7 @@ DMA_HandleTypeDef hdma_usart2_rx;
 
 /* USER CODE BEGIN PV */
 uint8_t rx_buf[CRSF_MAX_FRAME];
-PwmRcChannels_t rc_pwm_raw; //TODO: init with 1500
+PwmRcChannels_t rc_pwm_raw;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -73,6 +73,7 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 	{
 		HAL_GPIO_TogglePin(LED_Red_GPIO_Port, LED_Red_Pin);
 		HAL_UARTEx_ReceiveToIdle_DMA(&huart2, (uint8_t*) rx_buf, CRSF_MAX_PAYLOAD);
+		CsrfDecode(rx_buf);
 	}
 }
 /* USER CODE END 0 */
@@ -144,8 +145,9 @@ Error_Handler();
   /* USER CODE BEGIN 2 */
   // PWM for servos and ESCs
   InitPwm(&htim4);
-  SetPwm(TIM4, 1, 1.0);
-  SetPwm(TIM4, 2, 2.0);
+  SetPwm(TIM4, 1, TIM4_CH1_US_START);
+  SetPwm(TIM4, 2, TIM4_CH2_US_START);
+  InitPwmGlobals(&rc_pwm_raw);
 
   // start CSRF receiver
   __HAL_DMA_DISABLE_IT(&hdma_usart2_rx, DMA_IT_HT);
@@ -169,8 +171,10 @@ Error_Handler();
 //	  SetPwm(TIM4, 1, 1.0);
 //	  HAL_Delay(50);
 
-	  CsrfDecode(rx_buf);
+
 	  UartInt(rc_pwm_raw.ch00);
+	  UartChar(' ');
+	  UartInt(rc_pwm_raw.ch15);
 	  UartChar('\n');
 	  SetPwm(TIM4, 2, rc_pwm_raw.ch00);
 	  HAL_Delay(100);

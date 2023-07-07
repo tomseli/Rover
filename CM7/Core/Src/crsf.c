@@ -75,6 +75,7 @@ void CsrfLinkStatistics(uint8_t* buf, CsrfRcChannels_t* data)
 
 void CsrfToPwm(CsrfRcChannels_t* data)
 {
+	//TODO: make this more readable with a bit of pointer math
 	// (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 	rc_pwm_raw.ch00 = (data->channels.ch00 - 172) * 1024 / 1639 + 988;
 	rc_pwm_raw.ch01 = (data->channels.ch01 - 172) * 1024 / 1639 + 988;
