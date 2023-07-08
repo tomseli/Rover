@@ -17,6 +17,7 @@
         - [ ] Parameter read
         - [ ] Parameter write
         - [ ] Command
+    - [ ] Channel filtering
     - [ ] Reliable startup
     - [ ] Reattempt connections when there's issues
     - [ ] CRC check
