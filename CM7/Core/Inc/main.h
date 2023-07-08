@@ -34,6 +34,7 @@ extern "C" {
 #include "uart.h"
 #include "pwm.h"
 #include "csrf.h"
+#include "lpf.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -73,6 +74,13 @@ void Error_Handler(void);
 #define LED_Yellow_GPIO_Port GPIOE
 
 /* USER CODE BEGIN Private defines */
+typedef struct
+{
+	uint16_t ch00; 	// Roll
+	uint16_t ch01;	// Pitch
+	uint16_t ch02;	// Throttle
+	uint16_t ch03;  // Yaw
+}FilteredRcChannels_t;
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

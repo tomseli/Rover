@@ -10,6 +10,7 @@
 
 #include "main.h"
 #include "csrf.h"
+#include "lpf.h"
 
 #define APB_1_FREQ 200000000
 

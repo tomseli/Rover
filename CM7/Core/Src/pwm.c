@@ -49,3 +49,8 @@ void SetPwm(TIM_TypeDef* tim, int channel, int us)
 	}
 }
 
+void FilterPwm(LpfData_t* p, FilteredRcChannels_t* filtered_ch, PwmRcChannels_t* raw_ch)
+{
+
+}
+
