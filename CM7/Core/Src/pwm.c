@@ -49,8 +49,13 @@ void SetPwm(TIM_TypeDef* tim, int channel, int us)
 	}
 }
 
+//TODO: Test if this works
 void FilterPwm(LpfData_t* p, FilteredRcChannels_t* filtered_ch, PwmRcChannels_t* raw_ch)
 {
+	uint16_t* fil_p = &filtered_ch->ch00;
+	uint16_t* raw_p = &raw_ch->ch00;
 
+	for(int i = 0; i < 4; i++)
+		*fil_p++ = LpfUpdate(p, *raw_p++);
 }
 
