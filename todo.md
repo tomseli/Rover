@@ -10,14 +10,14 @@
         - [ ] Re-enable DCACHE
     - [ ] Frame decoding
         - [ ] Link statistics
-        - [ ] RC channels
+        - [x] RC channels
         - [ ] Device ping
         - [ ] Device info
         - [ ] Parameter settings entry
         - [ ] Parameter read
         - [ ] Parameter write
         - [ ] Command
-    - [ ] Channel filtering
+    - [x] Channel filtering
     - [ ] Reliable startup
     - [ ] Reattempt connections when there's issues
     - [ ] CRC check
