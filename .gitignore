@@ -59,4 +59,4 @@ release
 .launch
 
 # Obsidian
-Obsidian/
+Docs/Obsidian/.obsidian/*.json
