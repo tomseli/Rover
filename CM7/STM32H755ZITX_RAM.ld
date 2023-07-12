@@ -22,7 +22,7 @@
 *****************************************************************************
 ** @attention
 **
-** Copyright (c) 2022 STMicroelectronics.
+** Copyright (c) 2023 STMicroelectronics.
 ** All rights reserved.
 **
 ** This software is licensed under terms that can be found in the LICENSE file
@@ -91,12 +91,12 @@ SECTIONS
     . = ALIGN(4);
   } >RAM_D1
 
-  .ARM.extab   : { 
+  .ARM.extab   : {
     . = ALIGN(4);
     *(.ARM.extab* .gnu.linkonce.armextab.*)
     . = ALIGN(4);
   } >RAM_D1
-  
+
   .ARM : {
     . = ALIGN(4);
     __exidx_start = .;
@@ -113,7 +113,7 @@ SECTIONS
     PROVIDE_HIDDEN (__preinit_array_end = .);
     . = ALIGN(4);
   } >RAM_D1
-  
+
   .init_array :
   {
     . = ALIGN(4);
@@ -123,7 +123,7 @@ SECTIONS
     PROVIDE_HIDDEN (__init_array_end = .);
     . = ALIGN(4);
   } >RAM_D1
-  
+
   .fini_array :
   {
     . = ALIGN(4);
@@ -138,7 +138,7 @@ SECTIONS
   _sidata = LOADADDR(.data);
 
   /* Initialized data sections into "RAM" Ram type memory */
-  .data : 
+  .data :
   {
     . = ALIGN(4);
     _sdata = .;        /* create a global symbol at data start */
@@ -147,7 +147,7 @@ SECTIONS
 
     . = ALIGN(4);
     _edata = .;        /* define a global symbol at data end */
-    
+
   } >RAM_D1
 
   /* Uninitialized data section into "RAM" Ram type memory */

@@ -35,6 +35,7 @@
 #ifndef HSEM_ID_0
 #define HSEM_ID_0 (0U) /* HW semaphore 0*/
 #endif
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/

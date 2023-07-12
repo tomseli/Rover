@@ -21,6 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -34,6 +35,7 @@
 #ifndef HSEM_ID_0
 #define HSEM_ID_0 (0U) /* HW semaphore 0*/
 #endif
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -71,15 +73,7 @@ static void MX_TIM2_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
-{
-	if(huart == &huart2)
-	{
-		HAL_GPIO_TogglePin(LED_Red_GPIO_Port, LED_Red_Pin);
-		HAL_UARTEx_ReceiveToIdle_DMA(&huart2, (uint8_t*) rx_buf, CRSF_MAX_PAYLOAD);
-		CsrfDecode(rx_buf);
-	}
-}
+
 /* USER CODE END 0 */
 
 /**
@@ -148,21 +142,7 @@ Error_Handler();
   MX_USART2_UART_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-  // PWM for servos and ESCs
-  InitPwm(&htim4);
-  SetPwm(TIM4, 1, TIM4_CH1_US_START);
-  SetPwm(TIM4, 2, TIM4_CH2_US_START);
-  InitPwmGlobals(&rc_pwm_raw);
 
-  // Start CSRF receiver
-  __HAL_DMA_DISABLE_IT(&hdma_usart2_rx, DMA_IT_HT);
-  HAL_UARTEx_ReceiveToIdle_DMA(&huart2, (uint8_t*) rx_buf, CRSF_MAX_PAYLOAD);
-
-  // Start us timer
-  HAL_TIM_Base_Start(&htim2);
-
-  // Set up lpf
-  lpf = LpfInit(5e4); // tau = 0.05 s
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -172,26 +152,6 @@ Error_Handler();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-//	  SetPwm(TIM4, 2, 1.5);
-//	  HAL_Delay(50);
-//	  SetPwm(TIM4, 2, 2.0);
-//	  HAL_Delay(50);
-//	  SetPwm(TIM4, 1, 1.5);
-//	  HAL_Delay(50);
-//	  SetPwm(TIM4, 1, 1.0);
-//	  HAL_Delay(50);
-
-
-	  UartInt(rc_pwm_raw.ch00);
-	  UartChar(' ');
-	  UartInt(rc_pwm_filtered.ch00);
-	  UartChar('\n');
-	  rc_pwm_filtered.ch00 = LpfUpdate(lpf, rc_pwm_raw.ch00);
-	  SetPwm(TIM4, 2, rc_pwm_filtered.ch00);
-	  HAL_Delay(10);
-
-	  HAL_GPIO_TogglePin(LED_Green_GPIO_Port, LED_Green_Pin);
-
   }
   /* USER CODE END 3 */
 }
@@ -207,27 +167,27 @@ void SystemClock_Config(void)
 
   /** Supply configuration update enable
   */
-  HAL_PWREx_ConfigSupply(PWR_DIRECT_SMPS_SUPPLY);
+  HAL_PWREx_ConfigSupply(PWR_LDO_SUPPLY);
 
   /** Configure the main internal regulator output voltage
   */
-  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
 
   while(!__HAL_PWR_GET_FLAG(PWR_FLAG_VOSRDY)) {}
 
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
-  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+  RCC_OscInitStruct.HSIState = RCC_HSI_DIV1;
+  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLM = 2;
-  RCC_OscInitStruct.PLL.PLLN = 200;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+  RCC_OscInitStruct.PLL.PLLM = 4;
+  RCC_OscInitStruct.PLL.PLLN = 60;
   RCC_OscInitStruct.PLL.PLLP = 2;
   RCC_OscInitStruct.PLL.PLLQ = 2;
   RCC_OscInitStruct.PLL.PLLR = 2;
-  RCC_OscInitStruct.PLL.PLLRGE = RCC_PLL1VCIRANGE_2;
+  RCC_OscInitStruct.PLL.PLLRGE = RCC_PLL1VCIRANGE_3;
   RCC_OscInitStruct.PLL.PLLVCOSEL = RCC_PLL1VCOWIDE;
   RCC_OscInitStruct.PLL.PLLFRACN = 0;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
@@ -248,7 +208,7 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.APB2CLKDivider = RCC_APB2_DIV2;
   RCC_ClkInitStruct.APB4CLKDivider = RCC_APB4_DIV2;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
   {
     Error_Handler();
   }
@@ -482,9 +442,10 @@ static void MX_DMA_Init(void)
 static void MX_GPIO_Init(void)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
+/* USER CODE BEGIN MX_GPIO_Init_1 */
+/* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
   __HAL_RCC_GPIOD_CLK_ENABLE();
   __HAL_RCC_GPIOE_CLK_ENABLE();
@@ -509,9 +470,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LED_Yellow_GPIO_Port, &GPIO_InitStruct);
 
+/* USER CODE BEGIN MX_GPIO_Init_2 */
+/* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */
+
 /* USER CODE END 4 */
 
 /**
